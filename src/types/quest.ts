@@ -1,5 +1,5 @@
-export type GenreRu = 'мистика' | 'приключения' | 'ужасы' | 'детектив' | 'sci-fi';
-export type GenreEn = 'mystic' | 'adventures' | 'horror' | 'detective' | 'Sci-fi';
+import {Genre} from './genre';
+
 export type Level = 'hard' | 'medium' | 'easy';
 
 
@@ -9,7 +9,7 @@ export type Quest = {
   description: string,
   previewImg: string,
   coverImg: string,
-  type: GenreRu | GenreEn
+  type: Genre,
   level: Level,
   peopleCount: [number, number],
   duration: number,

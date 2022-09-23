@@ -3,7 +3,7 @@ import {RootState} from '../../index';
 import {RootReducerActions} from '../../store/redusers/root-reducer';
 import {loadQuests, setIsQuestsLoading} from '../../store/redusers/quests-reducer/quests-actions';
 import {checkResponse} from '../../helpers/check-response';
-import {API_URL} from '../../config/urls';
+import {API_URL} from '../../constants/urls';
 
 export const fetchQuests = (): ThunkAction<void, RootState, unknown, RootReducerActions> => (dispatch, _getState) => {
   dispatch(setIsQuestsLoading(true));
@@ -15,7 +15,6 @@ export const fetchQuests = (): ThunkAction<void, RootState, unknown, RootReducer
     })
     .catch((error) => {
       console.log(error)
-      // dispatch(showMessage(error))
     })
     .finally(() => dispatch(setIsQuestsLoading(false)))
 }
