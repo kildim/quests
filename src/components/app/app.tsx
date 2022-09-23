@@ -8,11 +8,29 @@ import {ThemeProvider} from 'styled-components';
 import * as S from './app.styled';
 import {appTheme} from './common';
 import Loading from '../common/loading/loading';
-import {useSelector} from 'react-redux';
+import {useSelector, useStore} from 'react-redux';
 import {getIsQuestsLoading} from '../../store/redusers/quests-reducer/selectors';
+import {useEffect} from 'react';
+import {fetchQuests} from '../../services/api/api';
+import {QuestsActions} from '../../store/redusers/quests-reducer/quests-actions';
+import {RootReducerType} from '../../store/redusers/root-reducer';
+import {ThunkDispatch} from '@reduxjs/toolkit';
+
+type ThunkAppDispatch = ThunkDispatch<
+  RootReducerType,
+  null,
+  QuestsActions
+  >;
 
 const App = () => {
-  const isQuestsLoading = useSelector(getIsQuestsLoading);;
+  const store = useStore();
+
+  useEffect(() => {
+    (store.dispatch as ThunkAppDispatch)(fetchQuests());
+    }, [store.dispatch]
+  );
+
+  const isQuestsLoading = useSelector(getIsQuestsLoading);
 
   if (isQuestsLoading) {
     return (

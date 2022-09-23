@@ -5,9 +5,6 @@ import {configureStore} from '@reduxjs/toolkit';
 import {rootReducer} from './store/redusers/root-reducer';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
-import {QuestsActions} from './store/redusers/quests-reducer/quests-actions';
-
-
 
 const store = configureStore({
   reducer: rootReducer,

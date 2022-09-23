@@ -1,5 +1,4 @@
 import * as S from './loading.styled';
-import {ReactComponent as IconClose} from 'assets/img/icon-close.svg';
 
 const Loading = () => (
       <S.BlockLayer>

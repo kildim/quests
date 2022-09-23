@@ -5,12 +5,16 @@ import {loadQuests, setIsQuestsLoading} from '../../store/redusers/quests-reduce
 import {checkResponse} from '../../helpers/check-response';
 import {API_URL} from '../../config/urls';
 
-const fetchQuests = (): ThunkAction<void, RootState, unknown, RootReducerActions> => (dispatch, _getState) => {
+export const fetchQuests = (): ThunkAction<void, RootState, unknown, RootReducerActions> => (dispatch, _getState) => {
   dispatch(setIsQuestsLoading(true));
   fetch(`${API_URL}/quests`)
     .then(checkResponse)
-    .then((res) => dispatch(loadQuests(res.data)))
+    .then((res) => {
+      dispatch(loadQuests(res))
+      dispatch(setIsQuestsLoading(false))
+    })
     .catch((error) => {
+      console.log(error)
       // dispatch(showMessage(error))
     })
     .finally(() => dispatch(setIsQuestsLoading(false)))
