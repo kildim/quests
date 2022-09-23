@@ -1,1 +1,3 @@
-export const GENRES = ['mystic', 'adventures', 'horror', 'detective', 'Sci-fi'] as const;
+import {filterValuesArray} from './filter-values-array';
+
+export const GENRES = filterValuesArray.filter(item => item !== 'all');

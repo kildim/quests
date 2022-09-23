@@ -1,3 +1,3 @@
-import {Filters} from '../constants/filters';
+import {filterValuesArray} from '../constants/filter-values-array';
 
-export type Filter = 'Все квесты' | 'Приключения' | 'Ужасы' | 'Мистика' | 'Детектив' | 'Sci-fi';
+export type Filter = typeof filterValuesArray[number]

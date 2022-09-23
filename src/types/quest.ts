@@ -1,7 +1,5 @@
 import {Genre} from './genre';
-
-export type Level = 'hard' | 'medium' | 'easy';
-
+import {Level} from './level';
 
 export type Quest = {
   id: number,

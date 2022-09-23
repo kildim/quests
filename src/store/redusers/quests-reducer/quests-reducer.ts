@@ -2,6 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import {Quest} from '../../../types/quest';
 import {loadQuests, setFilter, setIsQuestsLoading} from './quests-actions';
 import {Filter} from '../../../types/filter';
+import {getFilterByValue} from '../../../helpers/get-filter-by-value';
 import {Filters} from '../../../constants/filters';
 
 type QuestsReducer = {
@@ -10,12 +11,10 @@ type QuestsReducer = {
   filter: Filter;
 }
 
-console.log(Filters['all']);
-
 const initialState: QuestsReducer = {
   quests: [],
   isQuestsLoading: true,
-  filter: Filters['all'],
+  filter: getFilterByValue(Filters.all),
 };
 
 export const questsReducer = createReducer<QuestsReducer>(initialState, (builder) => {
