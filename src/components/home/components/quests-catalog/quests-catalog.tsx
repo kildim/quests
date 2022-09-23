@@ -8,55 +8,68 @@ import {ReactComponent as IconPerson} from 'assets/img/icon-person.svg';
 import {ReactComponent as IconPuzzle} from 'assets/img/icon-puzzle.svg';
 import * as S from './quests-catalog.styled';
 import {useDispatch, useSelector} from 'react-redux';
-import {getFilter} from '../../../../store/redusers/quests-reducer/selectors';
+import {getFilter, getQuests} from '../../../../store/redusers/quests-reducer/selectors';
 import {Filters} from '../../../../constants/filters';
 import {getFilterByValue} from '../../../../helpers/get-filter-by-value';
 import {setFilter} from '../../../../store/redusers/quests-reducer/quests-actions';
+import {FilterTitle} from '../../../../types/filtersTitle';
 
 const QuestsCatalog = () => {
   const filter = useSelector(getFilter);
+  const quests = useSelector(getQuests)
   const dispatch = useDispatch();
+
+  const filterQuestItems = (filter: FilterTitle) => {
+    if (filter === Filters.all) {
+      return [...quests]
+    }
+
+    return quests.filter(quest => quest.type === getFilterByValue(filter))
+  }
+
+  console.log(filter);
+  console.log(filterQuestItems(filter));
 
   return (
     <>
       <S.Tabs>
         <S.TabItem>
-          <S.TabBtn onClick={() => dispatch(setFilter(getFilterByValue(Filters.all)))} isActive={filter === getFilterByValue(Filters.all)}>
+          <S.TabBtn onClick={() => dispatch(setFilter(Filters.all))} isActive={filter === Filters.all}>
             <IconAllQuests/>
             <S.TabTitle>{Filters.all}</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
         <S.TabItem>
-          <S.TabBtn onClick={() => dispatch(setFilter(getFilterByValue(Filters.adventures)))} isActive={filter === getFilterByValue(Filters.adventures)}>
+          <S.TabBtn onClick={() => dispatch(setFilter(Filters.adventures))} isActive={filter === Filters.adventures}>
             <IconAdventures/>
             <S.TabTitle>{Filters.adventures}</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
         <S.TabItem>
-          <S.TabBtn onClick={() => dispatch(setFilter(getFilterByValue(Filters.horror)))} isActive={filter === getFilterByValue(Filters.horror)}>
+          <S.TabBtn onClick={() => dispatch(setFilter(Filters.horror))} isActive={filter === Filters.horror}>
             <IconHorrors/>
             <S.TabTitle>{Filters.horror}</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
         <S.TabItem>
-          <S.TabBtn onClick={() => dispatch(setFilter(getFilterByValue(Filters.mystic)))} isActive={filter === getFilterByValue(Filters.mystic)}>
+          <S.TabBtn onClick={() => dispatch(setFilter(Filters.mystic))} isActive={filter === Filters.mystic}>
             <IconMystic/>
             <S.TabTitle>{Filters.mystic}</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
         <S.TabItem>
-          <S.TabBtn onClick={() => dispatch(setFilter(getFilterByValue(Filters.detective)))} isActive={filter === getFilterByValue(Filters.detective)}>
+          <S.TabBtn onClick={() => dispatch(setFilter(Filters.detective))} isActive={filter === Filters.detective}>
             <IconDetective/>
             <S.TabTitle>{Filters.detective}</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
         <S.TabItem>
-          <S.TabBtn onClick={() => dispatch(setFilter(getFilterByValue(Filters['Sci-fi'])))} isActive={filter === getFilterByValue(Filters['Sci-fi'])}>
+          <S.TabBtn onClick={() => dispatch(setFilter(Filters['Sci-fi']))} isActive={filter === Filters['Sci-fi']}>
             <IconScifi/>
             <S.TabTitle>{Filters['Sci-fi']}</S.TabTitle>
           </S.TabBtn>

@@ -1,20 +1,19 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {Quest} from '../../../types/quest';
 import {loadQuests, setFilter, setIsQuestsLoading} from './quests-actions';
-import {Filter} from '../../../types/filter';
-import {getFilterByValue} from '../../../helpers/get-filter-by-value';
 import {Filters} from '../../../constants/filters';
+import {FilterTitle} from '../../../types/filtersTitle';
 
 type QuestsReducer = {
   quests: Quest [],
   isQuestsLoading: boolean,
-  filter: Filter;
+  filter: FilterTitle;
 }
 
 const initialState: QuestsReducer = {
   quests: [],
   isQuestsLoading: true,
-  filter: getFilterByValue(Filters.all),
+  filter: Filters.all,
 };
 
 export const questsReducer = createReducer<QuestsReducer>(initialState, (builder) => {

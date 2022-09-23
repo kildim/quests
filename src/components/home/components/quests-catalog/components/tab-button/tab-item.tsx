@@ -1,7 +1,5 @@
 import * as S from './tab-item.styled';
 import {ReactComponent as IconAllQuests} from '../../../../../../assets/img/icon-all-quests.svg';
-import {useSelector} from 'react-redux';
-import {getFilter} from '../../../../../../store/redusers/quests-reducer/selectors';
 
 type TabItemProps = {
   title: string
@@ -9,7 +7,6 @@ type TabItemProps = {
 
 const TabItem = (props: TabItemProps) => {
   const {title} = props;
-  const filter = useSelector(getFilter);
 
   return (
     <>
