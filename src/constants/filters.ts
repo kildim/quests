@@ -4,5 +4,5 @@ export enum Filters {
   'horror' = 'Ужасы',
   'mystic' = 'Мистика',
   'detective' = 'Детектив',
-  'Sci-fi' = 'Sci-fi',
+  'sci-fi' = 'Sci-fi',
 }

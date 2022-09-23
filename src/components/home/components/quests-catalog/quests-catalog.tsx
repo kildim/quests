@@ -69,9 +69,9 @@ const QuestsCatalog = () => {
         </S.TabItem>
 
         <S.TabItem>
-          <S.TabBtn onClick={() => dispatch(setFilter(Filters['Sci-fi']))} isActive={filter === Filters['Sci-fi']}>
+          <S.TabBtn onClick={() => dispatch(setFilter(Filters['sci-fi']))} isActive={filter === Filters['sci-fi']}>
             <IconScifi/>
-            <S.TabTitle>{Filters['Sci-fi']}</S.TabTitle>
+            <S.TabTitle>{Filters['sci-fi']}</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
       </S.Tabs>
