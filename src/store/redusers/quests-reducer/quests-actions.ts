@@ -3,8 +3,16 @@ import {Quest} from '../../../types/quest';
 
 export const loadQuests = createAction(
   'quests/loadQuests', (quests: Quest []) => ({
-    payload: {
-      films: quests,
-    },
+    payload: quests,
   }),
 );
+
+export const setIsQuestsLoading = createAction(
+  'quests/setIsQuestsLoading', (isLoading: boolean) => ({
+    payload: isLoading,
+  })
+)
+
+export type QuestsActions =
+  ReturnType<typeof loadQuests>
+  | ReturnType<typeof setIsQuestsLoading>;
