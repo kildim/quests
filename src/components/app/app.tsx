@@ -1,14 +1,12 @@
-import { ThemeProvider } from 'styled-components';
 import {
-  Switch,
-  Route,
-  BrowserRouter as Router,
+  BrowserRouter as Router, Route, Switch
 } from 'components/common/common';
-import DetailedQuest from 'components/detailed-quest/detailed-quest';
 import Contacts from 'components/contacts/contacts';
+import DetailedQuest from 'components/detailed-quest/detailed-quest';
 import Home from 'components/home/home';
-import { appTheme } from './common';
+import { ThemeProvider } from 'styled-components';
 import * as S from './app.styled';
+import { appTheme } from './common';
 
 const App = () => (
   <ThemeProvider theme={appTheme}>
