@@ -1,1 +1,5 @@
-export const LEVELS = ['hard', 'medium', 'easy']
+export enum Levels {
+  'hard' = 'сложный',
+  'medium' = 'средний',
+  'easy' = 'лёгкий',
+}
