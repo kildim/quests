@@ -15,6 +15,7 @@ import {fetchQuests} from '../../services/api/api';
 import {QuestsActions} from '../../store/redusers/quests-reducer/quests-actions';
 import {RootReducerType} from '../../store/redusers/root-reducer';
 import {ThunkDispatch} from '@reduxjs/toolkit';
+import Page404 from '../common/page-404/page-404';
 
 type ThunkAppDispatch = ThunkDispatch<
   RootReducerType,
@@ -52,8 +53,11 @@ const App = () => {
           <Route exact path="/contacts">
             <Contacts/>
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Home/>
+          </Route>
+          <Route>
+            <Page404 />
           </Route>
         </Switch>
       </Router>

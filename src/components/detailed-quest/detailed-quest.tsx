@@ -11,6 +11,7 @@ import {getQuests} from '../../store/redusers/quests-reducer/selectors';
 import {getEnumValueByKey} from '../../helpers/get-enum-value-by-key';
 import {Filters} from '../../constants/filters';
 import {Levels} from '../../constants/levels';
+import Page404 from '../common/page-404/page-404';
 
 const DetailedQuest = () => {
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
@@ -24,7 +25,7 @@ const DetailedQuest = () => {
   const quest = quests.find(quest => quest.id.toString() === id);
 
   if (quest === undefined) {
-    return null
+    return (<Page404 />)
   }
 
   return (
