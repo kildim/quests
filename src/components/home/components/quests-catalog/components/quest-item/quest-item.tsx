@@ -15,7 +15,7 @@ const QuestItem = (props: Props) => {
       <S.QuestItemLink to={`/quest/${quest.id}`}>
         <S.Quest>
           <S.QuestImage
-            src={quest.previewImg}
+            src={`/${quest.previewImg}`}
             width="344"
             height="232"
             alt={`Постер квеста ${quest.title}`}
