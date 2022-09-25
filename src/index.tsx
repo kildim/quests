@@ -5,6 +5,8 @@ import {configureStore} from '@reduxjs/toolkit';
 import {rootReducer} from './store/redusers/root-reducer';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
+import {ToastContainer, Zoom} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const store = configureStore({
   reducer: rootReducer,
@@ -18,6 +20,7 @@ render(
   <StrictMode>
     <Provider store={store}>
       <App />
+      <ToastContainer transition={Zoom}/>
     </Provider>
   </StrictMode>,
   document.getElementById('root'),
