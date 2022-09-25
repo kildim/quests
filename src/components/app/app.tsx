@@ -11,11 +11,12 @@ import Loading from '../common/loading/loading';
 import {useSelector, useStore} from 'react-redux';
 import {getIsQuestsLoading} from '../../store/redusers/quests-reducer/selectors';
 import {useEffect} from 'react';
-import {fetchQuests} from '../../services/api/api';
+import {fetchQuests} from '../../services/api/quests-api';
 import {QuestsActions} from '../../store/redusers/quests-reducer/quests-actions';
 import {RootReducerType} from '../../store/redusers/root-reducer';
 import {ThunkDispatch} from '@reduxjs/toolkit';
 import Page404 from '../common/page-404/page-404';
+import {useLocation} from 'react-router-dom';
 
 type ThunkAppDispatch = ThunkDispatch<
   RootReducerType,
