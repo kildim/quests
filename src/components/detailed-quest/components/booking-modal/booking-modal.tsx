@@ -75,6 +75,7 @@ const BookingModal = (props: Props) => {
               name="booking-phone"
               placeholder="Телефон"
               onChange={handlePhoneChange}
+              pattern="^[0-9]{10}$"
               required
             />
           </S.BookingField>
@@ -88,6 +89,7 @@ const BookingModal = (props: Props) => {
               name="booking-people"
               placeholder="Количество участников"
               onChange={handlePeopleChange}
+              min="1"
               required
             />
           </S.BookingField>

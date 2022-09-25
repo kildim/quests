@@ -12,7 +12,6 @@ import {getEnumValueByKey} from '../../helpers/get-enum-value-by-key';
 import {Filters} from '../../constants/filters';
 import {Levels} from '../../constants/levels';
 import Page404 from '../common/page-404/page-404';
-import {setIsOrderFetching} from '../../store/redusers/orders-reducer/orders-actions';
 import OrderLoader from './components/order-loader/order-loader';
 import {getIsOrderFetching} from '../../store/redusers/orders-reducer/selectors';
 
