@@ -1,7 +1,9 @@
 import * as S from './booking-modal.styled';
 import {ReactComponent as IconClose} from 'assets/img/icon-close.svg';
 import React, {ChangeEvent, FormEvent, SyntheticEvent, useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useStore} from 'react-redux';
+import {fetchOrder} from '../../../../services/api/orders-api';
+import {ThunkAppDispatch} from '../../../../types/thunk-app-dispatch';
 
 type Props = {
   closeOrderCB: () => void;
@@ -9,17 +11,34 @@ type Props = {
 
 const BookingModal = (props: Props) => {
   const {closeOrderCB} = props;
+  const store = useStore();
   const [name, setName] = useState('');
   const [isLegal, setIsLegal] = useState(false);
   const [phone, setPhone] = useState('');
-  const history = useHistory();
+  const [people, setPeople] = useState('')
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
-    console.log(name);
-    // evt.preventDefault();
+    (store.dispatch as ThunkAppDispatch) (fetchOrder(
+      {
+        name: name,
+        peopleCount: parseInt(people),
+        phone: phone,
+        isLegal: isLegal,
+      }
+    ));
+    evt.preventDefault();
   }
   const handleNameChange = ({target}: ChangeEvent<HTMLInputElement>) => {
     setName(target.value);
+  }
+  const handlePhoneChange = ({target}: ChangeEvent<HTMLInputElement>) => {
+    setPhone(target.value);
+  }
+  const handlePeopleChange = ({target}: ChangeEvent<HTMLInputElement>) => {
+    setPeople(target.value);
+  }
+  const handleConsentChange = ({target}: ChangeEvent<HTMLInputElement>) => {
+    setIsLegal(target.value === 'on')
   }
   const handleCloseBtnClick = (evt: SyntheticEvent) => {
     evt.preventDefault();
@@ -34,12 +53,7 @@ const BookingModal = (props: Props) => {
           <S.ModalCloseLabel>Закрыть окно</S.ModalCloseLabel>
         </S.ModalCloseBtn>
         <S.ModalTitle>Оставить заявку</S.ModalTitle>
-        <S.BookingForm onSubmit={handleFormSubmit}
-          // action="https://echo.htmlacademy.ru"
-          // action="http://localhost:3001/orders"
-          // method="post"
-          // id="booking-form"
-        >
+        <S.BookingForm onSubmit={handleFormSubmit}>
           <S.BookingField>
             <S.BookingLabel htmlFor="booking-name">Ваше Имя</S.BookingLabel>
             <S.BookingInput
@@ -48,7 +62,6 @@ const BookingModal = (props: Props) => {
               name="booking-name"
               placeholder="Имя"
               onChange={handleNameChange}
-              value={name}
               required
             />
           </S.BookingField>
@@ -61,6 +74,7 @@ const BookingModal = (props: Props) => {
               id="booking-phone"
               name="booking-phone"
               placeholder="Телефон"
+              onChange={handlePhoneChange}
               required
             />
           </S.BookingField>
@@ -73,6 +87,7 @@ const BookingModal = (props: Props) => {
               id="booking-people"
               name="booking-people"
               placeholder="Количество участников"
+              onChange={handlePeopleChange}
               required
             />
           </S.BookingField>
@@ -82,6 +97,7 @@ const BookingModal = (props: Props) => {
               type="checkbox"
               id="booking-legal"
               name="booking-legal"
+              onChange={handleConsentChange}
               required
             />
             <S.BookingCheckboxLabel

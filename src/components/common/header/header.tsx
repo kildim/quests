@@ -1,10 +1,9 @@
 import logo from 'assets/img/logo.svg';
 import * as S from './header.styled';
-import {useLocation, useRouteMatch} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 
 const Header = () => {
   const location = useLocation();
-  console.log(location);
 
   return (
   <S.StyledHeader>

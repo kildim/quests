@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { MainLayout } from 'components/common/common';
 import { ReactComponent as IconClock } from 'assets/img/icon-clock.svg';
 import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
@@ -12,11 +12,15 @@ import {getEnumValueByKey} from '../../helpers/get-enum-value-by-key';
 import {Filters} from '../../constants/filters';
 import {Levels} from '../../constants/levels';
 import Page404 from '../common/page-404/page-404';
+import {setIsOrderFetching} from '../../store/redusers/orders-reducer/orders-actions';
+import OrderLoader from './components/order-loader/order-loader';
+import {getIsOrderFetching} from '../../store/redusers/orders-reducer/selectors';
 
 const DetailedQuest = () => {
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
   const {id} = useParams<{id: string}>();
   const quests = useSelector(getQuests);
+  const isOrderFetching = useSelector(getIsOrderFetching)
 
   const onBookingBtnClick = () => {
     setIsBookingModalOpened(true);
@@ -73,6 +77,7 @@ const DetailedQuest = () => {
         </S.PageContentWrapper>
 
         {isBookingModalOpened && <BookingModal closeOrderCB={handleCloseOrderClick}/>}
+        {isOrderFetching && <OrderLoader/>}
       </S.Main>
     </MainLayout>
   );
