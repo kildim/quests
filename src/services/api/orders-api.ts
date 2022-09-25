@@ -6,6 +6,7 @@ import {checkResponse} from '../../helpers/check-response';
 import {setIsOrderFetching} from '../../store/redusers/orders-reducer/orders-actions';
 import {Order} from '../../types/order';
 import {toast} from 'react-toastify';
+import {setIsBookingModalOpened} from '../../store/redusers/app-integrity-reducer/app-integrity-actions';
 
 export const fetchOrder = (order: Order): ThunkAction<void, RootState, unknown, RootReducerActions> => (dispatch, _getState) => {
   dispatch(setIsOrderFetching(true));
@@ -20,7 +21,7 @@ export const fetchOrder = (order: Order): ThunkAction<void, RootState, unknown, 
   fetch(`${API_URL}/orders`, options)
     .then(checkResponse)
     .then(() => {
-      dispatch(setIsOrderFetching(false));
+      dispatch(setIsBookingModalOpened(false))
       toast.success(`Заказ успешно отправлен. Перезвоним в ближайшее время`, {
         position: toast.POSITION.TOP_CENTER
       })

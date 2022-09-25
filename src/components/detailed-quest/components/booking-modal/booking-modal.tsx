@@ -1,21 +1,19 @@
 import * as S from './booking-modal.styled';
 import {ReactComponent as IconClose} from 'assets/img/icon-close.svg';
 import React, {ChangeEvent, FormEvent, SyntheticEvent, useState} from 'react';
-import {useStore} from 'react-redux';
+import {useDispatch, useStore} from 'react-redux';
 import {fetchOrder} from '../../../../services/api/orders-api';
 import {ThunkAppDispatch} from '../../../../types/thunk-app-dispatch';
+import {getIsBookingModalOpened} from '../../../../store/redusers/app-integrity-reducer/selectors';
+import {setIsBookingModalOpened} from '../../../../store/redusers/app-integrity-reducer/app-integrity-actions';
 
-type Props = {
-  closeOrderCB: () => void;
-}
-
-const BookingModal = (props: Props) => {
-  const {closeOrderCB} = props;
+const BookingModal = () => {
   const store = useStore();
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [isLegal, setIsLegal] = useState(false);
   const [phone, setPhone] = useState('');
-  const [people, setPeople] = useState('')
+  const [people, setPeople] = useState('');
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     (store.dispatch as ThunkAppDispatch) (fetchOrder(
@@ -42,7 +40,7 @@ const BookingModal = (props: Props) => {
   }
   const handleCloseBtnClick = (evt: SyntheticEvent) => {
     evt.preventDefault();
-    closeOrderCB();
+    dispatch(setIsBookingModalOpened(false));
   }
 
   return (

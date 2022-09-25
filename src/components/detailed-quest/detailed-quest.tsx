@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MainLayout } from 'components/common/common';
 import { ReactComponent as IconClock } from 'assets/img/icon-clock.svg';
 import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
@@ -6,7 +6,7 @@ import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
 import * as S from './detailed-quest.styled';
 import { BookingModal } from './components/components';
 import {useParams} from 'react-router-dom';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {getQuests} from '../../store/redusers/quests-reducer/selectors';
 import {getEnumValueByKey} from '../../helpers/get-enum-value-by-key';
 import {Filters} from '../../constants/filters';
@@ -14,19 +14,19 @@ import {Levels} from '../../constants/levels';
 import Page404 from '../common/page-404/page-404';
 import OrderLoader from './components/order-loader/order-loader';
 import {getIsOrderFetching} from '../../store/redusers/orders-reducer/selectors';
+import {setIsBookingModalOpened} from '../../store/redusers/app-integrity-reducer/app-integrity-actions';
+import {getIsBookingModalOpened} from '../../store/redusers/app-integrity-reducer/selectors';
 
 const DetailedQuest = () => {
-  const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
+  const dispatch = useDispatch();
   const {id} = useParams<{id: string}>();
   const quests = useSelector(getQuests);
-  const isOrderFetching = useSelector(getIsOrderFetching)
+  const isOrderFetching = useSelector(getIsOrderFetching);
+  const isBookingModalOpened = useSelector(getIsBookingModalOpened)
 
   const onBookingBtnClick = () => {
-    setIsBookingModalOpened(true);
+    dispatch(setIsBookingModalOpened(true))
   };
-  const handleCloseOrderClick = () => {
-    setIsBookingModalOpened(false);
-  }
 
   const quest = quests.find(quest => quest.id.toString() === id);
 
@@ -75,7 +75,7 @@ const DetailedQuest = () => {
           </S.PageDescription>
         </S.PageContentWrapper>
 
-        {isBookingModalOpened && <BookingModal closeOrderCB={handleCloseOrderClick}/>}
+        {isBookingModalOpened && <BookingModal />}
         {isOrderFetching && <OrderLoader/>}
       </S.Main>
     </MainLayout>
