@@ -12,7 +12,7 @@ const QuestItem = (props: Props) => {
 
   return (
     <S.QuestItem>
-      <S.QuestItemLink to={`/quest/${quest.id}`}>
+      <S.QuestItemLink to={`/detailed-quest/${quest.id}`}>
         <S.Quest>
           <S.QuestImage
             src={`/${quest.previewImg}`}

@@ -21,6 +21,9 @@ const DetailedQuest = () => {
   const onBookingBtnClick = () => {
     setIsBookingModalOpened(true);
   };
+  const handleCloseOrderClick = () => {
+    setIsBookingModalOpened(false);
+  }
 
   const quest = quests.find(quest => quest.id.toString() === id);
 
@@ -69,7 +72,7 @@ const DetailedQuest = () => {
           </S.PageDescription>
         </S.PageContentWrapper>
 
-        {isBookingModalOpened && <BookingModal />}
+        {isBookingModalOpened && <BookingModal closeOrderCB={handleCloseOrderClick}/>}
       </S.Main>
     </MainLayout>
   );

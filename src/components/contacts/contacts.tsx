@@ -1,6 +1,6 @@
-import { MainLayout, PageTitle, PageSubtext } from 'components/common/common';
-import contactsMap from 'assets/img/contacts-map.jpg';
+import {MainLayout, PageTitle, PageSubtext} from 'components/common/common';
 import * as S from './contacts.styled';
+import {YMaps, Map, ZoomControl, Placemark} from 'react-yandex-maps';
 
 const Contacts = () => (
   <MainLayout>
@@ -17,7 +17,7 @@ const Contacts = () => (
             <S.ContactValue>
               <S.ContactAddress>
                 Санкт-Петербург,
-                <br />
+                <br/>
                 Набережная реки Карповка, д 5
               </S.ContactAddress>
             </S.ContactValue>
@@ -39,15 +39,23 @@ const Contacts = () => (
               </S.ContactLink>
             </S.ContactValue>
           </S.ContactsList>
-
           <S.ContactsMap>
-            <S.ContactsMapImage
-              src={contactsMap}
-              alt="мы находимся по адресу Санкт-Петербург, Набережная реки Карповка, д 5"
-              width="649"
-              height="336"
-            />
+            <YMaps>
+              <Map defaultState={{center: [59.968137, 30.316272], zoom: 16,}} style={{width: '649px', height: '336px'}}>
+                <ZoomControl />
+                <Placemark
+                  geometry={[59.968137, 30.316272]}
+                  options= {{
+                    iconLayout: 'default#image',
+                    iconImageHref: 'img/marker.png',
+                    iconImageSize: [48, 61],
+                    iconImageOffset: [0, -61]
+                  }}
+                />
+              </Map>
+            </YMaps>
           </S.ContactsMap>
+
         </S.Contacts>
       </S.ContentWrapper>
     </S.Main>
