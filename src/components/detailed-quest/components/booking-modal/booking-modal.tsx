@@ -4,7 +4,6 @@ import React, {ChangeEvent, FormEvent, SyntheticEvent, useState} from 'react';
 import {useDispatch, useStore} from 'react-redux';
 import {fetchOrder} from '../../../../services/api/orders-api';
 import {ThunkAppDispatch} from '../../../../types/thunk-app-dispatch';
-import {getIsBookingModalOpened} from '../../../../store/redusers/app-integrity-reducer/selectors';
 import {setIsBookingModalOpened} from '../../../../store/redusers/app-integrity-reducer/app-integrity-actions';
 
 const BookingModal = () => {

@@ -1,3 +1,3 @@
-import {GENRES} from '../constants/genres';
+import {genres} from '../constants/genres';
 
-export type Genre = typeof GENRES[number]
+export type Genre = typeof genres[number]
